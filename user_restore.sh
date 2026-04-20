@@ -1,22 +1,24 @@
 #!/bin/bash
 
-# $1 will be the project name passed from CubeMX
-#PROJ_NAME=$1
-PROJ_NAME=RandonHw
+#run : chmod +x user_restore.sh in terminal to make it executable
+# Copy user_restore path to CubeMX -> Project Manager -> User Code Generation -> Post generation -> Command: /home/thenhan/STM32/RandonHw/user_restore.sh
+
+PROJ_NAME=RandonHw # ! update new project's name in new projects
 PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
 SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
-
-
-# Create a timestamped folder name (e.g., MyProject_20240420_1530)
 TIMESTAMP=$(date +%Y%m%d_%H%M)
-# The folder CubeMX keeps deleting
-
 
 if [ -d "$SAFE_HOUSE" ]; then
-    #mkdir -p "$PROJECT_ROOT/$CUSTOM_FOLDER"
+    # Copies everything from the safe house back into project root
     rsync -av "$SAFE_HOUSE/" "$PROJECT_ROOT/"
-    echo "$TIMESTAMP: Restored FOLDERs which are deleted by STM32CubeMX to $PROJ_NAME." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
+    echo "$TIMESTAMP: Restored folders deleted by CubeMX" >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
 fi
+
+# After restoring, remove the subfolders in the safe house to save space, 
+# but keep the $SAFE_HOUSE directory itself so you can see the project was modified.
+find "$SAFE_HOUSE" -mindepth 1 -maxdepth 1 -type d -exec rm -rf {} +
+
+
 
 #DESTINATION="$BACKUP_ROOT/pre_gen_$TIMESTAMP"
 #DESTINATION="$BACKUP_ROOT"

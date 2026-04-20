@@ -1,21 +1,19 @@
 #!/bin/bash
-# $1 will be the project name passed from CubeMX
-#PROJ_NAME=$1
-PROJ_NAME=RandonHw
+PROJ_NAME=RandonHw #update in new projects
 PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
 SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
-
-
-# Create a timestamped folder name (e.g., MyProject_20240420_1530)
 TIMESTAMP=$(date +%Y%m%d_%H%M)
-# The folder CubeMX keeps deleting repeat for other folder
-CUSTOM_FOLDER_1="Utilities"
 
-if [ -d "$PROJECT_ROOT/$CUSTOM_FOLDER_1" ]; then
-    mkdir -p "$SAFE_HOUSE"
-    #rsync -av --delete "$PROJECT_ROOT/$CUSTOM_FOLDER/" "$SAFE_HOUSE/"
-    rsync -av "$PROJECT_ROOT/$CUSTOM_FOLDER_1" "$SAFE_HOUSE/"
-    echo "$TIMESTAMP: Backed up $PROJ_NAME to safe house." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
-fi
+# Add any new folders here, separated by a space
+#FOLDERS=("Utilities" "Drivers/Custom" "Docs")
+FOLDERS=("Utilities" )
+mkdir -p "$SAFE_HOUSE"
 
+for FOLDER in "${FOLDERS[@]}"; do
+    if [ -d "$PROJECT_ROOT/$FOLDER" ]; then
+        # -R ensures it keeps the directory structure inside the backup
+        rsync -avR "$PROJECT_ROOT/./$FOLDER" "$SAFE_HOUSE/"
+    fi
+done
 
+echo "$TIMESTAMP: Backed up folders for $PROJ_NAME" >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
