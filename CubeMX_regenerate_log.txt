@@ -1,0 +1,4 @@
+20260420_1536 - Re-generation backup completed to /home/thenhan/STM32/BackupForCubeMX
+20260420_1549 - Re-generation backup completed to /home/thenhan/STM32/BackupForCubeMX
+20260420_1549 - Restore folder completed to 
+20260420_1550 - Restore folder completed to 
