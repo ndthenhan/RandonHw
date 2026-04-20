@@ -1,20 +1,20 @@
 #!/bin/bash
+# $1 will be the project name passed from CubeMX
+PROJ_NAME=$1
+PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
+SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
 
-# Configuration - Change these to your project paths
-PROJECT_DIR="/home/thenhan/STM32/RandonHw"
-#PROJECT_DIR="{workspaceFolder}"
-
-BACKUP_ROOT="/home/thenhan/STM32/BackupForCubeMX"
 
 # Create a timestamped folder name (e.g., MyProject_20240420_1530)
 TIMESTAMP=$(date +%Y%m%d_%H%M)
-#DESTINATION="$BACKUP_ROOT/pre_gen_$TIMESTAMP"
-DESTINATION="$BACKUP_ROOT"
-# Create backup directory
-#mkdir -p "$DESTINATION"
+# The folder CubeMX keeps deleting
+CUSTOM_FOLDER="Utilities"
 
-# Backup the Core and App folders (where your custom code usually lives)
-# Add or remove folders as needed
-rsync -av "$PROJECT_DIR/Utilities"  "$DESTINATION/"
+if [ -d "$PROJECT_ROOT/$CUSTOM_FOLDER" ]; then
+    mkdir -p "$SAFE_HOUSE"
+    #rsync -av --delete "$PROJECT_ROOT/$CUSTOM_FOLDER/" "$SAFE_HOUSE/"
+    rsync -av "$PROJECT_ROOT/$CUSTOM_FOLDER/" "$SAFE_HOUSE/"
+    echo "$TIMESTAMP: Backed up $PROJ_NAME to safe house." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
+fi
 
-echo "$TIMESTAMP - Re-generation backup completed to $DESTINATION" >> "$PROJECT_DIR/CubeMX_regenerate_log.txt"
+
