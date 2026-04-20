@@ -15,7 +15,7 @@ TIMESTAMP=$(date +%Y%m%d_%H%M)
 if [ -d "$SAFE_HOUSE" ]; then
     #mkdir -p "$PROJECT_ROOT/$CUSTOM_FOLDER"
     rsync -av "$SAFE_HOUSE/" "$PROJECT_ROOT/"
-    echo "$TIMESTAMP: Restored $CUSTOM_FOLDER to $PROJ_NAME." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
+    echo "$TIMESTAMP: Restored FOLDERs which are deleted by STM32CubeMX to $PROJ_NAME." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
 fi
 
 #DESTINATION="$BACKUP_ROOT/pre_gen_$TIMESTAMP"
