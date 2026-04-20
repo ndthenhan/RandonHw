@@ -1,7 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
-CAD.formats=
-CAD.pinconfig=
-CAD.provider=
+CAD.formats=[]
+CAD.pinconfig=Dual
+CAD.provider=Component Search Engine
 File.Version=6
 GPIO.groupedBy=Group By Peripherals
 KeepUserPlacement=false
@@ -94,7 +94,7 @@ ProjectManager.BackupPrevious=false
 ProjectManager.CompilerLinker=GCC
 ProjectManager.CompilerOptimize=6
 ProjectManager.ComputerToolchain=false
-ProjectManager.CoupleFile=false
+ProjectManager.CoupleFile=true
 ProjectManager.CustomerFirmwarePackage=
 ProjectManager.DefaultFWLocation=true
 ProjectManager.DeletePrevious=true
