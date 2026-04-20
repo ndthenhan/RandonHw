@@ -3,6 +3,7 @@
 
 # 1. Add all submodules inside App/
 add_subdirectory(Itm)
+add_subdirectory(PrintUART)
 #add_subdirectory(App2)
 # add_subdirectory(App3)
 # add_subdirectory(App4)
@@ -15,6 +16,7 @@ add_library(utilities INTERFACE)
 # 3. Link all App modules into the app_layer
 target_link_libraries(utilities INTERFACE
     itmprintf
+    uartrintf
     # app2
     # app3
     # app4
