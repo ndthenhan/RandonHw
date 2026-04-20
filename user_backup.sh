@@ -1,7 +1,7 @@
 #!/bin/bash
 # $1 will be the project name passed from CubeMX
-PROJ_NAME=$1
-#PROJ_NAME=RandonHw
+#PROJ_NAME=$1
+PROJ_NAME=RandonHw
 PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
 SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
 
