@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # $1 will be the project name passed from CubeMX
-PROJ_NAME=$1
+#PROJ_NAME=$1
+PROJ_NAME=RandonHw
 PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
 SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
 
@@ -9,14 +10,13 @@ SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
 # Create a timestamped folder name (e.g., MyProject_20240420_1530)
 TIMESTAMP=$(date +%Y%m%d_%H%M)
 # The folder CubeMX keeps deleting
-CUSTOM_FOLDER="Utilities"
+
 
 if [ -d "$SAFE_HOUSE" ]; then
-    mkdir -p "$PROJECT_ROOT/$CUSTOM_FOLDER"
-    rsync -av  "$SAFE_HOUSE/" "$PROJECT_ROOT/"
-    echo "Restored $CUSTOM_FOLDER to $PROJ_NAME."
+    #mkdir -p "$PROJECT_ROOT/$CUSTOM_FOLDER"
+    rsync -av "$SAFE_HOUSE/" "$PROJECT_ROOT/"
+    echo "$TIMESTAMP: Restored $CUSTOM_FOLDER to $PROJ_NAME." >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
 fi
-echo "$TIMESTAMP - Restore folder completed to $DESTINATION" >> "$PROJECT_ROOT/CubeMX_regenerate_log.txt"
 
 #DESTINATION="$BACKUP_ROOT/pre_gen_$TIMESTAMP"
 #DESTINATION="$BACKUP_ROOT"

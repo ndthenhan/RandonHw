@@ -4,3 +4,5 @@
 20260420_1550 - Restore folder completed to 
 20260420_1553 - Re-generation backup completed to /home/thenhan/STM32/BackupForCubeMX
 Restore complete: Mon Apr 20 03:53:16 PM CEST 2026
+20260420_1655: Backed up RandonHw to safe house.
+20260420_1701: Restored  to RandonHw.
