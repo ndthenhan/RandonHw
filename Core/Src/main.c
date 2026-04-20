@@ -19,6 +19,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "gpio.h"
+#include "rng.h"
+#include "stm32f4xx_hal.h"
 #include "usart.h"
 
 
@@ -92,6 +94,7 @@ int main(void) {
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART3_UART_Init();
+  MX_RNG_Init();
   /* USER CODE BEGIN 2 */
   ITM_Init();
   /* USER CODE END 2 */
@@ -99,6 +102,7 @@ int main(void) {
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int counter = 0;
+  uint32_t random_val;
   while (1) {
     HAL_GPIO_WritePin(GPIOB, LD1_Pin | LD3_Pin | LD2_Pin, GPIO_PIN_SET);
     HAL_Delay(100);
@@ -106,6 +110,14 @@ int main(void) {
     HAL_Delay(100);
     printITMport(0, "Hello World!: %d\r\n", counter);
     printfUARTport(&huart3, "Hello World! UART print: %d\r\n", counter);
+    /* Generate a random number with a timeout */
+    if (HAL_RNG_GenerateRandomNumber(&hrng, &random_val) == HAL_OK) {
+      
+      printfUARTport(&huart3, "Hello World! UART print random: %lu\r\n", (unsigned long)random_val);
+      // random_val now contains a true 32-bit random number
+    //HAL_Delay(100);
+    }
+
     // UART3_Printf("Hello World! Virtual COM Port \r\n");
     counter++;
     if (counter > 100) {
@@ -141,7 +153,7 @@ void SystemClock_Config(void) {
   RCC_OscInitStruct.PLL.PLLM = 8;
   RCC_OscInitStruct.PLL.PLLN = 336;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
     Error_Handler();
   }
