@@ -3,9 +3,14 @@
 #run : chmod +x user_restore.sh in terminal to make it executable
 # Copy user_restore path to CubeMX -> Project Manager -> User Code Generation -> Post generation -> Command: /home/thenhan/STM32/RandonHw/user_restore.sh
 
-PROJ_NAME=RandonHw # ! update new project's name in new projects
-PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
-SAFE_HOUSE="/home/thenhan/STM32/BackupForCubeMX/$PROJ_NAME"
+#PROJ_NAME=RandonHw # ! update new project's name in new projects
+#PROJECT_ROOT="/home/thenhan/STM32/$PROJ_NAME"
+
+# Automatically get the full path and the folder name
+PROJECT_ROOT="$PWD"
+PROJ_NAME=$(basename "$PROJECT_ROOT")
+
+SAFE_HOUSE="$PROJECT_ROOT/../BackupForCubeMX/$PROJ_NAME"
 TIMESTAMP=$(date +%Y%m%d_%H%M)
 
 if [ -d "$SAFE_HOUSE" ]; then
