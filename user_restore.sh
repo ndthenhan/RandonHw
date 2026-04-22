@@ -10,7 +10,7 @@
 PROJECT_ROOT="$PWD"
 PROJ_NAME=$(basename "$PROJECT_ROOT")
 
-SAFE_HOUSE="$PROJECT_ROOT/../BackupForCubeMX/$PROJ_NAME"
+SAFE_HOUSE="$PROJECT_ROOT/../BackupForCubeMX/$PROJ_NAME" # backup folder is located one level up from project root, in BackupForCubeMX folder, with subfolder named after the project
 TIMESTAMP=$(date +%Y%m%d_%H%M)
 
 if [ -d "$SAFE_HOUSE" ]; then
