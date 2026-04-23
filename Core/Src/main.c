@@ -28,6 +28,7 @@
 #include "printITM.h"
 #include "printUART.h"
 #include <sys/_intsup.h>
+#include "ConsoleInterface.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,6 +97,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   ITM_Init();
+  CommandUART();
   /* USER CODE END 2 */
 
   /* Infinite loop */

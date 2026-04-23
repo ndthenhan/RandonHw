@@ -37,6 +37,7 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
 add_subdirectory(Utilities)
+add_subdirectory(Modules)
 
 
 # Link directories setup
@@ -66,6 +67,7 @@ list(REMOVE_ITEM CMAKE_C_IMPLICIT_LINK_LIBRARIES ob)
 target_link_libraries(${CMAKE_PROJECT_NAME}
     stm32cubemx
     utilities
+    modules
 
     # Add user defined libraries
 )
